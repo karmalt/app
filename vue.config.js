@@ -13,4 +13,9 @@ module.exports = defineConfig({
       },
     },
   },
+  //静态资源路径
+  publicPath:
+    process.env.NODE_ENV === 'production'
+      ? '/appOnline/' // *** 注意修改文件名
+      : '/',
 })
