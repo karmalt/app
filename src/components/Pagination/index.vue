@@ -1,9 +1,9 @@
 <template>
   <div class="pagination">
     <button :disabled="pageNo == 1" @click="$emit('getPageNo', pageNo - 1)">上一页</button>
-    <button v-if="starNumAndEndNum.start > 1" @click="$emit('getPageNo', 1)" :class="{ active: pageNo == 1 }">1</button>
+    <button v-if="starNumAndEndNum.start > 1" click="$emit('getPageNo', 1)" :class="{ active: pageNo == 1 }">1</button>
     <button v-if="starNumAndEndNum.start > 2">···</button>
-
+    <!-- 通过循环在连续页面的限制先展示相应的按钮页码，只有大于startNumAndEndNum.start的页面才会展示 -->
     <button v-for="(page, index) in starNumAndEndNum.end" :key="index" v-show="page >= starNumAndEndNum.start" @click="$emit('getPageNo', page)" :class="{ active: pageNo == page }">{{ page }}</button>
 
     <button v-if="starNumAndEndNum.end < totalPage - 1">···</button>

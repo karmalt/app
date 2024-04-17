@@ -35,7 +35,7 @@
                   <a>综合&nbsp;<span v-show="isOne" class="iconfont" :class="{ 'icon-up': isAsc, 'icon-down': isDesc }"></span></a>
                 </li>
                 <li :class="{ active: isTwo }" @click="changeOrder('2')">
-                  <a>价格&nbsp;<span v-show="isTwo" class="iconfont" :class="{ 'icon-up': isAsc, 'icon-down': isDesc }"></span></a>
+                  <a>价格&nbsp;<span v-show="isTwo" class="iconfont" :class="isAsc ? 'icon-up' : 'icon-down'"></span></a>
                 </li>
               </ul>
             </div>
@@ -144,7 +144,8 @@ export default {
     },
     removeKeyword() {
       this.searchParams.keyword = undefined
-      this.getData()
+      //不需要再调用getData了，因为路由会跳转，$route被监听到变化会重新调用getData
+      // this.getData()
       //通知兄弟组件清除关键字
       this.$bus.$emit('clear')
       this.$router.push({ name: 'search', query: this.$route.query })
@@ -154,7 +155,6 @@ export default {
       //整理即将要发起的品牌参数格式 品牌: "ID:品牌名称" 示例: "1:苹果"
       this.searchParams.trademark = `${trademark.tmId}:${trademark.tmName}`
       this.getData()
-      console.log(trademark)
     },
     //移除商标面包屑
     removeTrademark() {
@@ -164,7 +164,6 @@ export default {
     //当子组件点击属性是触发此函数
     attrInfo(attr, val) {
       //商品属性的数组: ["属性ID:属性值:属性名"] 示例: ["2:6.0～6.24英寸:屏幕尺寸"]
-      console.log(attr, val)
       let props = `${attr.attrId}:${val}:${attr.attrName}`
       if (this.searchParams.props.indexOf(props) == -1) this.searchParams.props.push(props)
       this.getData()
@@ -180,13 +179,15 @@ export default {
       // let originOrder = this.searchParams.order
       let originFlag = this.searchParams.order.split(':')[0]
       let originSort = this.searchParams.order.split(':')[1]
-      let newOrder = ''
+      // let newOrder = ''
       if (flag == originFlag) {
-        newOrder = `${flag}:${originSort == 'desc' ? 'asc' : 'desc'}`
+        // newOrder = `${flag}:${originSort == 'desc' ? 'asc' : 'desc'}`
+        this.searchParams.order = `${flag}:${originSort == 'desc' ? 'asc' : 'desc'}`
       } else {
-        newOrder = `${flag}:${'desc'}`
+        // newOrder = `${flag}:${'desc'}`
+        this.searchParams.order = `${flag}:${'desc'}`
       }
-      this.searchParams.order = newOrder
+      // this.searchParams.order = newOrder
       this.getData()
     },
     //自定义事件回调函数，获取当前第几页
@@ -194,7 +195,6 @@ export default {
       //整理带给服务器的参数
       this.searchParams.pageNo = pageNo
       this.getData()
-      console.log(pageNo)
     },
   },
   //监听属性

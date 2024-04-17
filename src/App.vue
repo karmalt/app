@@ -25,6 +25,7 @@ export default {
   mounted() {
     //通过Vuex发请求，获取数据，存储于仓库当中
     this.$store.dispatch('getcategoryList')
+    this.$store.dispatch('getFloorList')
   },
 
   methods: {},

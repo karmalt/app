@@ -24,7 +24,14 @@
 <script>
 export default {
   name: 'AddCartSuccess',
-  mounted() {},
+  // data() {
+  //   return {
+  //     skuInfo: {},
+  //   }
+  // },
+  // mounted() {
+  //   this.skuInfo = JSON.parse(sessionStorage.getItem('SKUINFO'))
+  // },
   computed: {
     skuInfo() {
       return JSON.parse(sessionStorage.getItem('SKUINFO'))

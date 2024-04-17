@@ -36,10 +36,11 @@ export default [
   { path: '/paysuccess', component: () => import('@/pages/PaySuccess'), meta: { show: false } },
   {
     path: '/center',
+    redirect: '/center/myorder',
     component: () => import('@/pages/Center'),
     meta: { show: false },
     children: [
-      { path: '/center', redirect: '/center/myorder' },
+      // { path: '/center', redirect: '/center/myorder' },
       { path: 'myorder', component: () => import('@/pages/Center/myOrder') },
       { path: 'grouporder', component: () => import('@/pages/Center/groupOrder') },
     ],

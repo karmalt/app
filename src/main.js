@@ -29,6 +29,7 @@ import * as API from '@/api'
 
 new Vue({
   render: (h) => h(App),
+
   //全局事件$bus总线配置
   beforeCreate() {
     Vue.prototype.$bus = this

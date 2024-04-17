@@ -14,7 +14,7 @@
           </p>
           <!-- 登录了 -->
           <p v-else>
-            <a>{{ userName }}</a>
+            <a class="username">{{ userName }}</a>
             <a class="register" @click="logout">退出登录</a>
           </p>
         </div>
@@ -48,6 +48,7 @@
 </template>
 
 <script>
+// import { removeToken } from '@/utils/token'
 export default {
   name: 'AppHeader',
 
@@ -80,6 +81,8 @@ export default {
       try {
         //退出成功，回到首页
         await this.$store.dispatch('userLogout')
+        // removeToken()
+        // localStorage.removeItem('token')
         this.$router.push('/home')
       } catch (error) {
         alert(error.message)
@@ -110,6 +113,7 @@ export default {
 
       .loginList {
         float: left;
+        cursor: pointer;
 
         p {
           float: left;

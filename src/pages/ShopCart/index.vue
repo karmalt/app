@@ -138,6 +138,7 @@ export default {
       }
     },
   },
+  watch: {},
   computed: {
     ...mapGetters(['cartList']),
     //购物车数据

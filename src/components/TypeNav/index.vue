@@ -51,7 +51,8 @@
 import { mapState } from 'vuex'
 //引入方式：是把lodash全部功能函数引入
 //最好的引入方式：按需加载
-import throttle from 'lodash/throttle'
+// import throttle from 'lodash/throttle'
+import { throttle } from 'lodash'
 export default {
   name: 'TypeNav',
 
@@ -133,9 +134,11 @@ export default {
 <style lang="less" scoped>
 .type-nav {
   border-bottom: 2px solid #e1251b;
+  // border-bottom: 2px solid green;
 
   .container {
     width: 1200px;
+    // width: 800px;
     margin: 0 auto;
     display: flex;
     position: relative;
